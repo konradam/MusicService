@@ -59,11 +59,34 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Migrations\201707291631579_InitialCreate.cs" />
+    <Compile Include="Migrations\201707291631579_InitialCreate.Designer.cs">
+      <DependentUpon>201707291631579_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707291656345_AddAlbum.cs" />
+    <Compile Include="Migrations\201707291656345_AddAlbum.Designer.cs">
+      <DependentUpon>201707291656345_AddAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{EFD1C4CC-BF51-407C-B742-0FD12BE98EF2}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707291631579_InitialCreate.resx">
+      <DependentUpon>201707291631579_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291656345_AddAlbum.resx">
+      <DependentUpon>201707291656345_AddAlbum.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

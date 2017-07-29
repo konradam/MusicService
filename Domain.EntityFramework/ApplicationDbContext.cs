@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data;
+using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Domain.EntityFramework
 {
@@ -13,5 +15,7 @@ namespace Domain.EntityFramework
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Album> Albums { get; set; }
     }
 }
