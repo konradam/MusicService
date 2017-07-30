@@ -30,16 +30,26 @@ namespace MusicService.Controllers
         }
 
         // GET: Album
-        public ActionResult Index()
+        public ActionResult Index(string searchAlbum)
         {
-            var albumViewModels = Context.Albums.Select(x => new AlbumViewModel()
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Band = x.Band,
-                Genre = x.Genre,
-                ReleaseDate = x.ReleaseDate,
-            });
+            var albumViewModels = String.IsNullOrEmpty(searchAlbum)
+                ? Context.Albums.Select(album => new AlbumViewModel
+                    {
+                        Id = album.Id,
+                        Title = album.Title,
+                        Band = album.Band,
+                        ReleaseDate = album.ReleaseDate,
+                        Genre = album.Genre,
+                    })
+                : Context.Albums.Where(x => x.Title.Contains(searchAlbum)).Select(album => new AlbumViewModel
+                {
+                    Id = album.Id,
+                    Title = album.Title,
+                    Band = album.Band,
+                    ReleaseDate = album.ReleaseDate,
+                    Genre = album.Genre,
+                });
+            
             return View(albumViewModels);
         }
 
