@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Domain;
 
 namespace MusicService.ViewModels
@@ -22,6 +23,8 @@ namespace MusicService.ViewModels
         public string Title { get; set; }
         public string Band { get; set; }
         public string Genre { get; set; }
+
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
     }
 }
