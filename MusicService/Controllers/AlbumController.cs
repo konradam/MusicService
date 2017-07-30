@@ -57,12 +57,42 @@ namespace MusicService.Controllers
             {
                 Title = albumViewModel.Title,
                 Band = albumViewModel.Band,
-                Genre =  albumViewModel.Genre,
+                Genre = albumViewModel.Genre,
                 ReleaseDate = albumViewModel.ReleaseDate,
             });
 
             Context.SaveChanges();
 
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var album = Context.Albums.FirstOrDefault(x => x.Id == id);
+
+
+            if (album == null)
+                return RedirectToAction("Index");
+
+            var albumViewModel = new AlbumViewModel(album);
+
+            return View(albumViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(AlbumViewModel albumViewModel)
+        {
+            var album = Context.Albums.FirstOrDefault(x => x.Id == albumViewModel.Id);
+
+            if (album == null)
+                return RedirectToAction("Index");
+
+            album.Title = albumViewModel.Title;
+            album.Band = albumViewModel.Band;
+            album.Genre = albumViewModel.Genre;
+            album.ReleaseDate = albumViewModel.ReleaseDate;
+
+            Context.SaveChanges();
             return RedirectToAction("Index");
         }
     }
