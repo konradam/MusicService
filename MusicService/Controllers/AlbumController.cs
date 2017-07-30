@@ -95,5 +95,33 @@ namespace MusicService.Controllers
             Context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            var album = Context.Albums.FirstOrDefault(x => x.Id == id);
+
+
+            if (album == null)
+                return RedirectToAction("Index");
+
+            var albumViewModel = new AlbumViewModel(album);
+
+            return View(albumViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(AlbumViewModel albumViewModel)
+        {
+            var album = Context.Albums.FirstOrDefault(x => x.Id == albumViewModel.Id);
+
+            if (album == null)
+                return RedirectToAction("Index");
+
+            Context.Albums.Remove(album);
+
+            Context.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }
