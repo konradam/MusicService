@@ -17,5 +17,6 @@ namespace Domain.EntityFramework
         }
 
         public DbSet<Album> Albums { get; set; }
+
     }
 }

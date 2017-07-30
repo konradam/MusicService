@@ -29,6 +29,19 @@ namespace MusicService.Controllers
             SignInManager = signInManager;
         }
 
+        private ApplicationDbContext _context;
+
+        public ApplicationDbContext Context
+        {
+            get
+            {
+                return _context ?? HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+            }
+            private set 
+            {
+                _context = value; 
+            }
+        }
         public ApplicationSignInManager SignInManager
         {
             get
